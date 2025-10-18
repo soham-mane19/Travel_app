@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:travel_app/core/services/shared_pref_service.dart';
 import 'package:travel_app/modules/auth/screens/signin.dart';
 
 void showLogoutDialog(BuildContext context) {
@@ -26,7 +25,6 @@ void showLogoutDialog(BuildContext context) {
             ),
             onPressed: () async {
               await FirebaseAuth.instance.signOut();
-              await  SharedPrefService.sethasLogin(false);
               Navigator.of(context).pop(); // close dialog
            
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {

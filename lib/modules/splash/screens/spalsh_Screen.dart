@@ -1,6 +1,7 @@
 
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_app/core/services/shared_pref_service.dart';
@@ -26,7 +27,7 @@ class _SpalshScreenState extends State<SpalshScreen> {
    void _starttimer()async{
 
 bool hasSeen  = await SharedPrefService.hasSeenOnboarding();
-bool hasLogin = await SharedPrefService.hasLogin();
+bool hasLogin =   FirebaseAuth.instance.currentUser!=null;
   Timer(const Duration(seconds: 5), () { 
    if(!hasSeen){
 Navigator.of(context).push(MaterialPageRoute(builder: (context) {

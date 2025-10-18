@@ -14,197 +14,191 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
-    TextEditingController emailCon = TextEditingController();
-  bool isLoading  = false;
+  TextEditingController emailCon = TextEditingController();
+  TextEditingController nameCOn = TextEditingController();
+  bool isLoading = false;
+
   TextEditingController passwordCon = TextEditingController();
   bool visibility = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
+        body: SingleChildScrollView(
+      child: Column(children: [
+        SizedBox(
+          height: 150,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              height: 150,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Sign up now",
-                    style: GoogleFonts.poppins(
-                        fontSize: 26,
-                        fontWeight: FontWeight.w600,
-                        color: const Color.fromRGBO(27, 30, 40, 1)))
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Please fill the details and create account",
-                    style: GoogleFonts.poppins(
+            Text("Sign up now",
+                style: GoogleFonts.poppins(
+                    fontSize: 26,
+                    fontWeight: FontWeight.w600,
+                    color: const Color.fromRGBO(27, 30, 40, 1)))
+          ],
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Please fill the details and create account",
+                style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: const Color.fromRGBO(125, 132, 141, 1)))
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 30, left: 20, right: 20),
+          child: Column(
+            children: [
+              TextFormField(
+                controller: nameCOn,
+                decoration: InputDecoration(
+                    hintText: 'Enter Name',
+                    hintStyle: GoogleFonts.poppins(
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
-                        color: const Color.fromRGBO(125, 132, 141, 1)))
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 30, left: 20, right: 20),
-              child: Column(
+                        color: const Color.fromRGBO(27, 30, 40, 1)),
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(14)),
+                    fillColor: const Color.fromRGBO(247, 247, 249, 1),
+                    filled: true),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              TextFormField(
+                controller: emailCon,
+                decoration: InputDecoration(
+                    hintText: 'Enter Email',
+                    hintStyle: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: const Color.fromRGBO(27, 30, 40, 1)),
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(14)),
+                    fillColor: const Color.fromRGBO(247, 247, 249, 1),
+                    filled: true),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              TextFormField(
+                controller: passwordCon,
+                obscureText: visibility,
+                obscuringCharacter: '*',
+                decoration: InputDecoration(
+                    hintText: 'Enter Password',
+                    hintStyle: GoogleFonts.poppins(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: const Color.fromRGBO(125, 132, 141, 1)),
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(14)),
+                    fillColor: const Color.fromRGBO(247, 247, 249, 1),
+                    filled: true,
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            visibility = !visibility;
+                          });
+                        },
+                        icon: Icon(visibility
+                            ? Icons.visibility_off
+                            : Icons.visibility))),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
                 children: [
-                  TextFormField(
-                    decoration: InputDecoration(
-                        hintText: 'Enter Name',
-                        hintStyle: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: const Color.fromRGBO(27, 30, 40, 1)),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(14)),
-                        fillColor: const Color.fromRGBO(247, 247, 249, 1),
-                        filled: true),
-                  ),
-                   const SizedBox(
-                    height: 15,
-                  ),
-                    TextFormField(
-                      controller: emailCon,
-                    decoration: InputDecoration(
-                        hintText: 'Enter Email',
-                        hintStyle: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: const Color.fromRGBO(27, 30, 40, 1)),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(14)),
-                        fillColor: const Color.fromRGBO(247, 247, 249, 1),
-                        filled: true),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  TextFormField(
-                    controller: passwordCon,
-                    obscureText: visibility,
-                    obscuringCharacter: '*',
-                    decoration: InputDecoration(
-                        hintText: 'Enter Password',
-                        hintStyle: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: const Color.fromRGBO(125, 132, 141, 1)),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(14)),
-                        fillColor: const Color.fromRGBO(247, 247, 249, 1),
-                        filled: true,
-                        suffixIcon: IconButton(
-                            onPressed: () {
-                              setState(() {
-                                visibility = !visibility;
-                              });
-                            },
-                            icon: Icon(visibility
-                                ? Icons.visibility_off
-                                : Icons.visibility))),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Row(
-                   
-                    children: [
-                    Text("Password must be 6 character",
-                            style: GoogleFonts.poppins(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: const Color.fromRGBO(125, 132, 141, 1))),
-                      
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-               isLoading
-                  ? const CircularProgressIndicator()
-                  :     ElevatedButton(
-                    style: const ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll(
-                            Color.fromRGBO(13, 110, 253, 1)),
-                        minimumSize: MaterialStatePropertyAll(
-                          Size(double.infinity, 56),
-                        ),
-                        shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(16))))),
-                    onPressed: () {
-                  
-                    setData();
-                    
-                     
-                    },
-                    child: Text("Sign Up",
-                        style: GoogleFonts.poppins(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: const Color.fromRGBO(255, 255, 255, 1))),
-                  ),
-                  const SizedBox(
-                    height: 35,
-                  ),
-                 
-                  
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Or connect',
-                          style: GoogleFonts.poppins(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: const Color.fromRGBO(112, 123, 129, 1))),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 100,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [Image.asset('assets/icon.png')],
-                  ),
+                  Text("Password must be 6 character",
+                      style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: const Color.fromRGBO(125, 132, 141, 1))),
                 ],
               ),
-            
-            )
-          ]
-        ),
-      )
-    );
+              const SizedBox(
+                height: 25,
+              ),
+              isLoading
+                  ? const CircularProgressIndicator()
+                  : ElevatedButton(
+                      style: const ButtonStyle(
+                          backgroundColor: MaterialStatePropertyAll(
+                              Color.fromRGBO(13, 110, 253, 1)),
+                          minimumSize: MaterialStatePropertyAll(
+                            Size(double.infinity, 56),
+                          ),
+                          shape: MaterialStatePropertyAll(
+                              RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(16))))),
+                      onPressed: () {
+                        setData();
+                      },
+                      child: Text("Sign Up",
+                          style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: const Color.fromRGBO(255, 255, 255, 1))),
+                    ),
+              const SizedBox(
+                height: 35,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Or connect',
+                      style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: const Color.fromRGBO(112, 123, 129, 1))),
+                ],
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [Image.asset('assets/icon.png')],
+              ),
+            ],
+          ),
+        )
+      ]),
+    ));
   }
-  Future setData()async{
-   setState(() => isLoading = true);
-   try{
-        
-      await   FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailCon.text, password: passwordCon.text);
-  ScaffoldMessenger.of(context).showSnackBar(
+
+  Future setData() async {
+    setState(() => isLoading = true);
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailCon.text, password: passwordCon.text);
+
+      User? user = FirebaseAuth.instance.currentUser;
+      await user!.updateDisplayName(nameCOn.text);
+      await user.reload();
+      ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Account created successfully 🎉')),
       );
- 
- Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) {
-                        return const Signin();
-                      
-                      },
-                    ));
 
-   } on FirebaseAuthException catch(e){
-
-
-           String message ='';
- if (e.code == 'weak-password') {
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) {
+          return const Signin();
+        },
+      ));
+    } on FirebaseAuthException catch (e) {
+      String message = '';
+      if (e.code == 'weak-password') {
         message = 'Password is too weak.';
       } else if (e.code == 'email-already-in-use') {
         message = 'This email is already registered.';
@@ -217,13 +211,8 @@ class _SignupState extends State<Signup> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(message)),
       );
-   }finally{
-    setState(() => isLoading = false);
-   }
-
-
-
-
-
+    } finally {
+      setState(() => isLoading = false);
+    }
   }
 }
