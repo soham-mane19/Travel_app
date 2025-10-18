@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:travel_app/core/services/shared_pref_service.dart';
 import 'package:travel_app/modules/auth/screens/onboarding/onboard3.dart';
+import 'package:travel_app/modules/auth/screens/signin.dart';
 
 
 class Onboard2 extends StatelessWidget {
@@ -163,8 +165,14 @@ class Onboard2 extends StatelessWidget {
           top: 50,
           right: 20,
           child: GestureDetector(
-            onTap: () {
+            onTap: () async{
+               Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+                return Signin();
+              },
+
               
+              ));
+            await  SharedPrefService.setHasSeenOnboarding(true);
             },
             child: Text("Skip",
                 style: GoogleFonts.poppins(

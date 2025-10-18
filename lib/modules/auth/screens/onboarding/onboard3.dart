@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:travel_app/core/services/shared_pref_service.dart';
 import 'package:travel_app/modules/auth/screens/signin.dart';
 
 class Onboard3 extends StatelessWidget {
@@ -8,7 +9,7 @@ class Onboard3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(children: [
+      body: Stack(children: [
         Column(
           children: [
             Container(
@@ -89,7 +90,6 @@ class Onboard3 extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                   
                     Container(
                       height: 7,
                       width: 13,
@@ -98,7 +98,7 @@ class Onboard3 extends StatelessWidget {
                         color: const Color.fromRGBO(202, 234, 255, 1),
                       ),
                     ),
-                     const SizedBox(
+                    const SizedBox(
                       width: 4,
                     ),
                     Container(
@@ -112,7 +112,7 @@ class Onboard3 extends StatelessWidget {
                     const SizedBox(
                       width: 4,
                     ),
-                     Container(
+                    Container(
                       height: 7,
                       width: 35,
                       decoration: BoxDecoration(
@@ -120,8 +120,6 @@ class Onboard3 extends StatelessWidget {
                         color: const Color.fromRGBO(13, 110, 253, 1),
                       ),
                     ),
-
-
                   ],
                 ),
                 const SizedBox(
@@ -131,38 +129,48 @@ class Onboard3 extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
-                      style:const  ButtonStyle(backgroundColor: MaterialStatePropertyAll(Color.fromRGBO(13, 110, 253, 1)),
-                      minimumSize: MaterialStatePropertyAll(Size(335, 56),
-                      
-                      ),
-                      shape: MaterialStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))))
-                      ),
-                      onPressed: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                           return  const Signin();
-                        },));
+                      style: const ButtonStyle(
+                          backgroundColor: MaterialStatePropertyAll(
+                              Color.fromRGBO(13, 110, 253, 1)),
+                          minimumSize: MaterialStatePropertyAll(
+                            Size(335, 56),
+                          ),
+                          shape: MaterialStatePropertyAll(
+                              RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(16))))),
+                      onPressed: () async {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) {
+                            return Signin();
+                          },
+                        ));
+                        await SharedPrefService.setHasSeenOnboarding(true);
                       },
-                     child:   Text("Next",   style: GoogleFonts.poppins(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: const Color.fromRGBO(255, 255, 255, 1))),
-         
-       ),
-      
+                      child: Text("Next",
+                          style: GoogleFonts.poppins(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: const Color.fromRGBO(255, 255, 255, 1))),
+                    ),
                   ],
                 )
-               
               ],
             ),
           ],
         ),
         Positioned(top: 555, right: 115, child: Image.asset('assets/vec.png')),
-      Positioned(
+        Positioned(
           top: 50,
           right: 20,
           child: GestureDetector(
-            onTap: () {
-              
+            onTap: () async {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) {
+                  return Signin();
+                },
+              ));
+              await SharedPrefService.setHasSeenOnboarding(true);
             },
             child: Text("Skip",
                 style: GoogleFonts.poppins(

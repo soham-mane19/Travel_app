@@ -3,7 +3,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:travel_app/core/services/shared_pref_service.dart';
 import 'package:travel_app/modules/auth/screens/onboarding/onboard1.dart';
+import 'package:travel_app/modules/auth/screens/signin.dart';
+import 'package:travel_app/modules/home/screens/homeScreen.dart';
 
 
 class SpalshScreen extends StatefulWidget {
@@ -18,13 +21,34 @@ class _SpalshScreenState extends State<SpalshScreen> {
   @override
    void initState(){
     super.initState();
-    timer();
+    _starttimer();
    }
-   void timer(){
-  Timer(const Duration(seconds: 10), () { 
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+   void _starttimer()async{
+
+bool hasSeen  = await SharedPrefService.hasSeenOnboarding();
+bool hasLogin = await SharedPrefService.hasLogin();
+  Timer(const Duration(seconds: 5), () { 
+   if(!hasSeen){
+Navigator.of(context).push(MaterialPageRoute(builder: (context) {
        return const Onboard1();
     },));
+   }
+    else{
+
+      if(hasLogin){
+         
+         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+       return const HomeScreen();
+    },));
+            
+      }
+      else{
+ Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+       return const Signin();
+    },));
+      }
+   
+   }
   });
 
    }

@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   badges: ^3.0.2 
+  firebase_auth: ^6.1.1
   firebase_core: ^4.2.0
   flutter:
     sdk: flutter
@@ -24,46 +25,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-  - assets\onboard1.png
-  - assets\vec.png
-  - assets\explore2.png
-  - assets\onboard3.png
-  - assets\icon.png
-  - assets\leonardo.png
-  - assets\Notifications.png
-  - assets\vector1.png
-  - assets\naldari.png
-  - assets\student3.png
-  - assets\student2.png
-  - assets\student1.png
-  - assets\places.jpg
-  - assets\mainplace.jpg
-  - assets\details.png
-  - assets\detailstu.png
-  - assets\photo1.png
-  - assets\photo2.png
-  - assets\photo3.png
-  - assets\photo4.png
-  - assets\photo5.png   
-  - assets\view.png
-  - assets\la.png
-  - assets\lemon.png
-  - assets\darma.png
-  - assets\highrichpark.png
-  - assets\nalndari.png
-  - assets\rangaoti.png
-  - assets\Aonang.png
-  - assets\nalandari.png
-  - assets\caslas.png
-  - assets\andaom.png
-  - assets\sajib.png 
-  - assets\Hr.png
-  - assets\Anjelina.png
-  - assets\alexa.png
-  - assets\seen.png
-  - assets\deleivereed.png
-  - assets\chat1.png
-  - assets\chat2.png
-  - assets\profile.png
-  - assets\Group.png
-  - assets\Version.png
+    - assets/
+  
+ 

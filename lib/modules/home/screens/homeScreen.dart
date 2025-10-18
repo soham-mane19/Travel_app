@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_app/modules/home/screens/Calender.dart';
 import 'package:travel_app/modules/home/screens/details.dart';
+import 'package:travel_app/modules/home/widgets/alert_box.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -38,6 +39,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontWeight: FontWeight.w600,
                                 color: const Color.fromRGBO(27, 30, 40, 1))),
                         const Spacer(),
+                        GestureDetector(
+                          onTap: () {
+                             
+                            showLogoutDialog(context);
+
+                          },
+                          child: Icon(Icons.logout),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
                         Image.asset(
                           'assets/Notifications.png',
                         ),
@@ -458,4 +470,6 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
+
+  
 }
