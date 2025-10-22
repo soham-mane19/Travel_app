@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travel_app/core/services/shared_pref_service.dart';
+import 'package:travel_app/core/utils/location_permission_service.dart';
 import 'package:travel_app/modules/auth/screens/onboarding/onboard2.dart';
 import 'package:travel_app/modules/auth/screens/signin.dart';
 
@@ -169,10 +170,20 @@ class Onboard1 extends StatelessWidget {
               Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
                 return Signin();
               },
-
-              
+           
               ));
             await  SharedPrefService.setHasSeenOnboarding(true);
+        bool isGranted = await  LocationPermissionService.requestLocationPermission();
+
+                 if(isGranted){
+                  
+                  LocationPermissionService.fetchAndSaveLocation();
+
+                 }
+                 else{
+                         
+                         
+                 }
             },
             child: Text("Skip",
                 style: GoogleFonts.poppins(
