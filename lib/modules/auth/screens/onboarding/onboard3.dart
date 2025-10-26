@@ -190,7 +190,9 @@ class Onboard3 extends StatelessWidget {
 
                  }
                  else{
-                         
+                       
+                        
+
                  }
             },
             child: Text("Skip",

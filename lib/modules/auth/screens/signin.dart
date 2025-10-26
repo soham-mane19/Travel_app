@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:travel_app/modules/auth/screens/forgot_password_screen.dart';
 import 'package:travel_app/modules/home/screens/homeScreen.dart';
 
 import 'package:travel_app/modules/auth/screens/signup.dart';
@@ -104,8 +105,13 @@ class _SigninState extends State<Signin> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
-                        onTap: () {},
-                        child: Text("Forget Password?",
+                        onTap: () {
+Navigator.of(context).push(MaterialPageRoute(builder: (context){
+return ForgotPasswordScreen();
+}));
+
+                        },
+                        child: Text("Forgot Password?",
                             style: GoogleFonts.poppins(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
