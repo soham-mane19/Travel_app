@@ -3,8 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:travel_app/modules/home/screens/Calender.dart';
+import 'package:travel_app/core/widgets/custom_bottom_nav_bar.dart';
+import 'package:travel_app/modules/home/screens/Intersted_screen.dart';
 import 'package:travel_app/modules/home/screens/details.dart';
+import 'package:travel_app/modules/home/screens/profile_screen.dart';
 import 'package:travel_app/modules/home/widgets/alert_box.dart';
 
 
@@ -18,13 +20,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int index = 0;
 
-  String? userName;
+  late String userName;
 
   @override
   void initState(){
   super.initState();
-userName = FirebaseAuth.instance.currentUser?.displayName;
-  
+userName = FirebaseAuth.instance.currentUser?.displayName ?? 'UserName';
+  print('user name is :: $userName');
 }
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,7 @@ userName = FirebaseAuth.instance.currentUser?.displayName;
                         const SizedBox(
                           width: 10,
                         ),
-                        Text("Leonardo",
+                        Text(userName,
                             style: GoogleFonts.poppins(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
@@ -367,116 +369,7 @@ userName = FirebaseAuth.instance.currentUser?.displayName;
         Positioned(
             top: 235, right: 110, child: Image.asset('assets/vector1.png'))
       ]),
-      floatingActionButton: Container(
-        padding: const EdgeInsets.only(left: 17, right: 10, top: 10),
-        height: 80,
-        decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(65),
-              topRight: Radius.circular(65),
-            ),
-            color: Color.fromRGBO(255, 255, 255, 1),
-            boxShadow: [
-              BoxShadow(
-                color: Color.fromRGBO(175, 184, 198, 0.12),
-                offset: Offset(-6, 0),
-                blurRadius: 16,
-                spreadRadius: 16,
-              )
-            ]),
-        child: Row(
-          children: [
-            Column(
-              children: [
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        index = 0;
-                      });
-                    },
-                    icon: Icon(
-                      Icons.home,
-                      color: index == 0
-                          ? const Color.fromRGBO(13, 110, 253, 1)
-                          : const Color.fromRGBO(125, 132, 141, 1),
-                    )),
-                Text("Home",
-                    style: GoogleFonts.poppins(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w400,
-                        color: index == 0
-                            ? const Color.fromRGBO(13, 110, 253, 1)
-                            : const Color.fromRGBO(125, 132, 141, 1)))
-              ],
-            ),
-            const SizedBox(
-              width: 25,
-            ),
-            Column(
-              children: [
-                IconButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                         return  const Calendar();
-                      }));
-                    },
-                    icon: const Icon(Icons.calendar_month_outlined)),
-                Text(
-                  "Calendar",
-                  style: GoogleFonts.poppins(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w400,
-                      color: const Color.fromRGBO(125, 132, 141, 1)),
-                )
-              ],
-            ),
-            const SizedBox(
-              width: 25,
-            ),
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                height: 70,
-                width: 70,
-                decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color.fromRGBO(13, 110, 253, 1)),
-                child: const Icon(
-                  Icons.search,
-                  color: Color.fromRGBO(255, 255, 255, 1),
-                  size: 25,
-                ),
-              ),
-            ),
-            const SizedBox(
-              width: 25,
-            ),
-            Column(
-              children: [
-                IconButton(onPressed: () {}, icon: const Icon(Icons.message)),
-                Text("Messages",
-                    style: GoogleFonts.poppins(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w400,
-                        color: const Color.fromRGBO(125, 132, 141, 1)))
-              ],
-            ),
-            const SizedBox(
-              width: 25,
-            ),
-            Column(
-              children: [
-                IconButton(onPressed: () {}, icon: const Icon(Icons.person)),
-                Text("Profile",
-                    style: GoogleFonts.poppins(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w400,
-                        color: const Color.fromRGBO(125, 132, 141, 1)))
-              ],
-            ),
-          ],
-        ),
-      ),
+      floatingActionButton:CustomBottomNavBar(currentIndex: 0),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }

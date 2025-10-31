@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:travel_app/config/router/router.dart';
 
 import 'package:travel_app/firebase/firebase_options.dart';
 import 'package:travel_app/modules/splash/screens/spalsh_Screen.dart';
@@ -18,9 +19,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      home:  SpalshScreen(),
+    routerConfig: router,
     );
   }
 }

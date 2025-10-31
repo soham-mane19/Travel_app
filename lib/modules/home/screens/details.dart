@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:travel_app/modules/home/screens/Viewpage.dart';
 
 class Details extends StatelessWidget {
   const Details({super.key});
@@ -245,9 +244,7 @@ class Details extends StatelessWidget {
                             borderRadius:
                                 BorderRadius.all(Radius.circular(16))))),
                     onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                       return const  Viewpage();
-                  }));
+                
                     },
                     child: Text("Book Now",
                         style: GoogleFonts.poppins(
